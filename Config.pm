@@ -1,4 +1,4 @@
-//Config parameters
+#!/usr/bin/perl
 
 use strict;
 
@@ -16,7 +16,6 @@ my $config = {
 		width => 10,
 		height => 10
 		},
-		`
 		};
 
 sub ships {
@@ -30,7 +29,6 @@ sub boardHeight {
 sub boardWidth {
 	return $config->{boardSize}->{width};
 }
-
 
 
 1;

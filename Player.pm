@@ -2,18 +2,19 @@
 
 use strict;
 
-use Config;
+#use Config;
 use Board;
+use Ship;
 
 package Player;
 
 sub new {
-	my ($class, $name) = @_;
+	my ($class, $name, $boardHeight, $boardWidth) = @_;
 
 	my $self = {
 		name => $name,
-		myBoard => new Board(1),
-		opponentBoard => new Board(0),
+		myBoard => new Board(1,$boardHeight, $boardWidth),
+		opponentBoard => new Board(0, $boardHeight, $boardWidth),
 		myShips => {},
 		opponentShips => {}
 		};
@@ -29,14 +30,16 @@ sub name {
 sub addShip {
 	my ($self, $ship) = @_;
 	$self->{myBoard}->addShip($ship);
-	$self->myShips{$ship->name} = $ship;
+	$self->{myShips}->{$ship->name} = $ship;
 } 
 
 sub myBoardDisplay {
+	my $self = $_;
 	return $self->myBoard->displayBoard();
 }
 
 sub opponentBoardDisplay {
+	my $self = $_;
 	return $self->opponentBoard->displayBoard();
 }
 
